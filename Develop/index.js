@@ -1,5 +1,6 @@
 const inquirer = require('inquirer');
 const chalk = require('chalk');
+const generateMarkdown = require('./utils/generateMarkdown');
 
 // TODO: Include packages needed for this application
 
@@ -27,14 +28,11 @@ init();
 // to do: finish questions
 inquirer
     .prompt(questions)
-    .then((answers) => {
-        // to do: get ref to answer for each question
-        console.log(answers);
-         const title = answers.title;
-         console.log(title);
-        
-        
-    })
+    .then(function (data) {
+        generateMarkdown(data);
+        console.log('this came from the generate md function: ' + data.title);
+    }
+    )
     .catch((error) => { // this block taken from inquirer documentation
         if (error.isTtyError) {
             console.log('Prompt couldnt be rendered in the current environment... \n')
