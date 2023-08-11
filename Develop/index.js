@@ -31,6 +31,7 @@ inquirer
     .then(function (data) {
         generateMarkdown(data);
         console.log('this came from the generate md function: ' + data.title);
+        // to do: get a md file with a title on it
     }
     )
     .catch((error) => { // this block taken from inquirer documentation
