@@ -22,6 +22,16 @@ function generateMarkdown(data) {
   - TO DO: PURPOSE OF PROJECT
   - TO DO: feature list?
 
+## Table of Contents
+
+  /* TO DO: USER INPUT AND OPT OUT FOR EACH OF THESE */
+  - [Installation](#installation)
+  - [Usage](#usage)
+  - [Credits](#credits)
+  - [License](#license)
+  - [Contributing](#contributing)
+  - [Tests](#test)
+  - [Questions](#questions)  
 `;
 }
 
