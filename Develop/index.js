@@ -31,15 +31,15 @@ inquirer
         console.log(answers);
          const title = answers.title;
          console.log(title);
-        // .split(' ').join('').json
+        
         
     })
-    // .catch((error) => {
-    //     if (error.isTtyError) {
-    //         console.log('Tty error')
-    //       // Prompt couldn't be rendered in the current environment
-    //     } else {
-    //         console.log('error msg')
-    //       // Something else went wrong
-    //     }
-    //   });
+    .catch((error) => { // this block taken from inquirer documentation
+        if (error.isTtyError) {
+            console.log('Tty error')
+          // Prompt couldn't be rendered in the current environment
+        } else {
+            console.log('error msg')
+          // Something else went wrong
+        }
+      });
