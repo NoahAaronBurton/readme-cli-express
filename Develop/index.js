@@ -1,6 +1,7 @@
 const inquirer = require('inquirer');
 const chalk = require('chalk');
 const generateMarkdown = require('./utils/generateMarkdown');
+const fs = require('fs');
 
 // TODO: Include packages needed for this application
 
@@ -29,11 +30,20 @@ init();
 inquirer
     .prompt(questions)
     .then(function (data) {
-        generateMarkdown(data);
-        console.log('this came from the generate md function: ' + data.title);
-        // to do: get a md file with a title on it
-    }
-    )
+       const markdown= generateMarkdown(data);
+        console.log('this came from the generate md function: ' 
+        + data.title);
+        fs.appendFile('README.md', markdown, (err) => {
+            if (err) { // w3 schools helped me with this err check
+                console.error('Error writing to file:', err);
+              } else {
+                console.log('Data written to file successfully.');
+              }
+        });
+
+        // to do: after questions are finsihed, tell user to check utils folder for their README
+        
+    })
     .catch((error) => { // this block taken from inquirer documentation
         if (error.isTtyError) {
             console.log('Prompt couldnt be rendered in the current environment... \n')
