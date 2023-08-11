@@ -4,7 +4,13 @@ const chalk = require('chalk');
 // TODO: Include packages needed for this application
 
 // TODO: Create an array of questions for user input
-const questions = [];
+const questions = [
+    {
+        type: 'input',
+        message: 'What is the title of your Project?',
+        name: 'title',
+    },
+];
 
 // TODO: Create a function to write README file
 function writeToFile(fileName, data) {}
@@ -18,16 +24,11 @@ function init() {
 
 // Function call to initialize app
 init();
-
+// to do: finish questions
 inquirer
-    .prompt([
-        {
-            type: 'input',
-            message: 'What is the title of your Project?',
-            name: 'title',
-        },
-    ])
+    .prompt(questions)
     .then((answers) => {
+        // to do: get ref to answer for each question
         console.log(answers);
          const title = answers.title;
          console.log(title);
@@ -36,10 +37,9 @@ inquirer
     })
     .catch((error) => { // this block taken from inquirer documentation
         if (error.isTtyError) {
-            console.log('Tty error')
-          // Prompt couldn't be rendered in the current environment
+            console.log('Prompt couldnt be rendered in the current environment... \n')
         } else {
-            console.log('error msg')
-          // Something else went wrong
+            console.log('Something went wrong... \n')
+          
         }
       });
