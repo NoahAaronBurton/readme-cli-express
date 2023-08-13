@@ -81,6 +81,16 @@ const questions = [
         name: 'contribDetails',
         when: (answers) => answers.contribReq === true,
     },
+    {
+        type: 'confirm',
+        message: `Would you like to add a section for Tests?`,
+        name: 'testReq',
+    },
+    {
+        type: 'input',
+        message: 'Enter your testing instructions:',
+        name: 'testDetails'
+    },
 ];
 
 

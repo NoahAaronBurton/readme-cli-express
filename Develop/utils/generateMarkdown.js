@@ -58,6 +58,12 @@ function generateMarkdown(data) {
   - [Contributing](#contributing) 
      `;
    }
+   // tests ref
+   if (data.testReq === true) {
+    markdown += `
+  - [Tests](#tests)  
+    `;
+   }
    
 
    // ---APPENDING SECTIONS AND THEIR CONTENT---
@@ -128,6 +134,16 @@ function generateMarkdown(data) {
   4. Push to the Branch ('git push origin feature/AmazingFeature')
   5. Open a Pull Request
      `;
+   }
+
+   //tests section
+   if (data.testReq === true) {
+    markdown += `
+  ## Tests
+  
+    ${data.testDetails}
+    
+    `;
    }
    
    
