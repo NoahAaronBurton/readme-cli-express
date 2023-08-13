@@ -3,7 +3,6 @@ const chalk = require('chalk');
 const generateMarkdown = require('./utils/generateMarkdown');
 const fs = require('fs');
 
-// TODO: Include packages needed for this application
 
 // TODO: Create an array of questions for user input
 // import checkbox, { Separator } from '@inquirer/checkbox';
@@ -50,9 +49,29 @@ const questions = [
         name: 'usageDetails',
         when: (answers) => answers.usageReq === true,
     },
+    {
+        type: 'rawlist',
+        message: 'Which kind of license would you like to use?',
+        default: 'MIT',
+        choices: [
+            {name: 'MIT', value: 'MIT'},
+            {name: 'ISC', value: 'ISC'},
+        ],
+        name: 'license',
+    },
+    {
+        type: 'input',
+        message: 'Enter the Copyright year. A date range is also acceptable:',
+        name: 'licenseYear',
+    },
+    {
+        type: 'input',
+        message: 'Enter the Copyright Holder(s):',
+        name : 'copyrightHolder',
+    },
 ];
 
-// TODO: Create a function to write README file
+
 function writeToFile(fileName, data) {
     fs.writeFile(fileName, data, (err) => {
         if (err) { // w3 schools helped me with this err check
@@ -63,7 +82,6 @@ function writeToFile(fileName, data) {
     });
 }
 
-// TODO: Create a function to initialize app
 const log = console.log;
 
 function init() {
@@ -76,10 +94,8 @@ init();
 inquirer
     .prompt(questions)
     .then(function (data) {
-        console.log('this is the value for installReq: ' + data.installReq);
+        console.log('this is the value for license: ' + data.license);
        const markdown= generateMarkdown(data);
-        // console.log('this came from the generate md function: ' 
-        // + data.title);
         writeToFile('README.md', markdown);
 
         
