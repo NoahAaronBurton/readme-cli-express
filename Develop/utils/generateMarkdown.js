@@ -12,34 +12,45 @@ function renderLicenseSection(license) {}
 
 // TODO: Create a function to generate markdown for README
 function generateMarkdown(data) {
+  // title and desc
   let markdown = `
   # ${data.title}
   
   ## Description
   ${data.description}
   `;
+  // purpose of project
   markdown += `
   - Purpose of Project:
 
     ${data.purpose}
   `;
+  // ---TABLE OF CONTENTS----
   markdown += `
   ## Table of Contents
 
  `;
-  
+  // install instructions ref
    if (data.installReq === true) {
     markdown += `
   - [Installation](#installation)
     `;
+  //usage ref  
    }
    if (data.usageReq === true) {
     markdown += `
   - [Usage](#usage)
     `;
    }
+   // license ref
+   markdown += `
+  - [License](#license) 
+   `;
 
-   // appending the sections and their content
+   // ---APPENDING SECTIONS AND THEIR CONTENT---
+
+
+   // install section
    if (data.installReq === true){
     markdown += `
 ## Installation
@@ -49,6 +60,7 @@ function generateMarkdown(data) {
     ${data.installDetails}  
     `;   
    } else {}
+    // usage section 
    if (data.usageReq === true) {
     markdown += `
 ## Usage
@@ -59,7 +71,7 @@ function generateMarkdown(data) {
     `
    } else {}
 
-   // license
+   // license section
    markdown += `
 ## License
 
