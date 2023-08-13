@@ -64,6 +64,13 @@ function generateMarkdown(data) {
   - [Tests](#tests)  
     `;
    }
+
+   // questions ref
+   if(data.questionsReq === true) {
+    markdown += `
+  - [Questions](#questions)  
+    `;
+   }
    
 
    // ---APPENDING SECTIONS AND THEIR CONTENT---
@@ -142,10 +149,24 @@ function generateMarkdown(data) {
   ## Tests
   
     ${data.testDetails}
-    
+
     `;
    }
-   
+   // questions section
+   if(data.questionsReq === true) {
+    let githubUsername = data.githubUsername;
+    let githubUsernameURL = 'https://github.com/'+ githubUsername;
+    console.log(githubUsername);
+    markdown += `
+  ## Questions and Contact Info
+
+  
+  
+
+  [![${githubUsername}](${'https://img.shields.io/badge/' + githubUsername + '-Go-green.svg'})](${githubUsernameURL})
+
+    `;
+   }
    
   
     

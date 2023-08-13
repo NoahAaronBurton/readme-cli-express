@@ -91,6 +91,18 @@ const questions = [
         message: 'Enter your testing instructions:',
         name: 'testDetails'
     },
+    {
+        type: 'confirm',
+        message: 'Would you like to add a Questions/Contact Me section? This is where you can add your contact information.',
+        name: 'questionsReq',
+    },
+    {
+        type: 'input',
+        message: 'Enter your GitHub Username:',
+        name: 'githubUsername',
+        when: (answers) => (answers.questionsReq === true),
+    },
+   
 ];
 
 
@@ -116,7 +128,7 @@ init();
 inquirer
     .prompt(questions)
     .then(function (data) {
-        console.log('this is the value for contrib: ' + data.contribReq);
+       // console.log('this is the value for contrib: ' + data.contribReq);
        const markdown= generateMarkdown(data);
         writeToFile('README.md', markdown);
 
