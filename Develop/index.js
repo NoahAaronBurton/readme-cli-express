@@ -2,6 +2,7 @@ const inquirer = require('inquirer');
 const chalk = require('chalk');
 const generateMarkdown = require('./utils/generateMarkdown');
 const fs = require('fs');
+const log = console.log;
 
 
 // TODO: Create an array of questions for user input
@@ -69,6 +70,17 @@ const questions = [
         message: 'Enter the Copyright Holder(s):',
         name : 'copyrightHolder',
     },
+    {
+        type: 'confirm', 
+        message: 'Would you like to add a section with Contributing Instructions? Fork instructions will automatically be added. You may include additional text in this section.',
+        name: 'contribReq',
+    },
+    {
+        type: 'input',
+        message: 'Enter your Contribution Instructions (an empty input is acceptable):',
+        name: 'contribDetails',
+        when: (answers) => answers.contribReq === true,
+    },
 ];
 
 
@@ -77,12 +89,12 @@ function writeToFile(fileName, data) {
         if (err) { // w3 schools helped me with this err check
             console.error('Error writing to file:', err);
           } else {
-            console.log('Data written to file successfully. Go check Develop/utils/README.md to view your file!');
+            log(chalk.bgGreen('Data written to file successfully. Go check Develop/utils/README.md to view your file!'));
           }
     });
 }
 
-const log = console.log;
+
 
 function init() {
     const welcomeTitle = log(chalk.bgCyanBright('All aboard the READ.ME Express \n Complete the following prompts to generate your READ.ME: \n'));
@@ -94,7 +106,7 @@ init();
 inquirer
     .prompt(questions)
     .then(function (data) {
-        console.log('this is the value for license: ' + data.license);
+        console.log('this is the value for contrib: ' + data.contribReq);
        const markdown= generateMarkdown(data);
         writeToFile('README.md', markdown);
 
