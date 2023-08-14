@@ -102,6 +102,17 @@ const questions = [
         name: 'githubUsername',
         when: (answers) => (answers.questionsReq === true),
     },
+    {
+        type: 'confirm',
+        message: 'Would you like to add a Credits section?',
+        name: 'creditsReq',
+    },
+    {
+        type: 'number',
+        message: 'How many reference slots would you like to add? \n Note: Go into the document after README is generated and enter the respective information',
+        name: 'creditsSlots',
+        when: (answers) => (answers.creditsReq === true),
+    },
    
 ];
 
@@ -128,7 +139,7 @@ init();
 inquirer
     .prompt(questions)
     .then(function (data) {
-       // console.log('this is the value for contrib: ' + data.contribReq);
+        console.log('this is the value for number of slots: ' + data.creditsSlots);
        const markdown= generateMarkdown(data);
         writeToFile('README.md', markdown);
 

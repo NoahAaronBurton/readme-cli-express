@@ -71,6 +71,13 @@ function generateMarkdown(data) {
   - [Questions](#questions)  
     `;
    }
+
+   // credits ref
+   if (data.creditsReq === true) {
+    markdown += `
+  - [Credits](#credits)  
+    `;
+   }
    
 
    // ---APPENDING SECTIONS AND THEIR CONTENT---
@@ -158,14 +165,27 @@ function generateMarkdown(data) {
     let githubUsernameURL = 'https://github.com/'+ githubUsername;
     console.log(githubUsername);
     markdown += `
-  ## Questions and Contact Info
+  ## Questions
 
   
   
 
-  [![${githubUsername}](${'https://img.shields.io/badge/' + githubUsername + '-Go-green.svg'})](${githubUsernameURL})
+  [![${githubUsername}](${'https://img.shields.io/badge/' + githubUsername + '-GitHub-green.svg'})](${githubUsernameURL})
 
     `;
+   }
+   // credits section
+   if (data.creditsReq === true) {
+    markdown += `
+  ## Credits
+  
+  
+    `;
+    for (let i = 0; i < data.creditsSlots; i++) {
+      markdown += `
+  - []()
+      `;
+    }
    }
    
   
