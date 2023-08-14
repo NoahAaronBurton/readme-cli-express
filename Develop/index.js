@@ -5,8 +5,6 @@ const fs = require('fs');
 const log = console.log;
 
 
-// TODO: Create an array of questions for user input
-// import checkbox, { Separator } from '@inquirer/checkbox';
 const questions = [
     {
         type: 'input',
@@ -72,7 +70,7 @@ const questions = [
     },
     {
         type: 'confirm', 
-        message: 'Would you like to add a section with Contributing Instructions? Fork instructions will automatically be added. You may include additional text in this section.',
+        message: 'Would you like to add a section with Contribution Guidelines? Fork instructions will automatically be added. You may include additional text in this section.',
         name: 'contribReq',
     },
     {
@@ -89,7 +87,8 @@ const questions = [
     {
         type: 'input',
         message: 'Enter your testing instructions:',
-        name: 'testDetails'
+        name: 'testDetails',
+        when: (answers) => answers.testReq === true,
     },
     {
         type: 'confirm',
@@ -103,13 +102,19 @@ const questions = [
         when: (answers) => (answers.questionsReq === true),
     },
     {
+        type: 'input',
+        message: 'Enter the email address you would like to be contacted at:',
+        name: 'userEmail',
+        when: (answers) => (answers.questionsReq === true),
+    },
+    {
         type: 'confirm',
         message: 'Would you like to add a Credits section?',
         name: 'creditsReq',
     },
     {
         type: 'number',
-        message: 'How many reference slots would you like to add? \n Note: Go into the document after README is generated and enter the respective information',
+        message: 'How many reference slots would you like to add? \n Note: Go into the document after README is generated and enter the respective information \n Credit Slots:',
         name: 'creditsSlots',
         when: (answers) => (answers.creditsReq === true),
     },
@@ -135,7 +140,7 @@ function init() {
 
 // Function call to initialize app
 init();
-// to do: finish questions
+
 inquirer
     .prompt(questions)
     .then(function (data) {

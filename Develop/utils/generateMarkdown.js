@@ -11,7 +11,7 @@ function renderLicenseBadge(license) {
 
 }
 
-// TODO: Create a function to generate markdown for README
+
 function generateMarkdown(data) {
   // title and desc
   let placeholderImg = `![placeholder img](https://placehold.co/600x400)`;
@@ -113,7 +113,7 @@ function generateMarkdown(data) {
   ${licenseBadge}
    `;
    if (data.license === 'MIT'){
-    console.log('MIT selected');
+    
     markdown += `
   Copyright ${data.licenseYear}   ${data.copyrightHolder}
 
@@ -163,6 +163,7 @@ function generateMarkdown(data) {
    if(data.questionsReq === true) {
     let githubUsername = data.githubUsername;
     let githubUsernameURL = 'https://github.com/'+ githubUsername;
+    let userEmail = data.userEmail;
     console.log(githubUsername);
     markdown += `
   ## Questions
@@ -170,8 +171,10 @@ function generateMarkdown(data) {
   
   
 
-  [![${githubUsername}](${'https://img.shields.io/badge/' + githubUsername + '-GitHub-green.svg'})](${githubUsernameURL})
+  [![${githubUsername}](${'https://img.shields.io/badge/' + githubUsername + '-GitHub-purple.svg'})](${githubUsernameURL})
 
+
+  Contact Email: ${userEmail}
     `;
    }
    // credits section
